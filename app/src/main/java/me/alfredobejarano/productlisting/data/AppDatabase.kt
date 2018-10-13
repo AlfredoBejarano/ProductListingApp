@@ -18,7 +18,7 @@ import me.alfredobejarano.productlisting.BuildConfig
 abstract class AppDatabase : RoomDatabase() {
     /**
      * Retrieves a reference of [SessionDao] to
-     * acces database operations of the [Session] entity.
+     * access database operations of the [Session] entity.
      * @return Reference to the [SessionDao].
      */
     abstract fun getSessionDao(): SessionDao
