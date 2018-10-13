@@ -1,5 +1,6 @@
 package me.alfredobejarano.productlisting.data
 
+import androidx.lifecycle.MutableLiveData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
@@ -18,6 +19,7 @@ class LoginRepository @Inject constructor(
     private val webservice: Webservice,
     private val repo: SessionRepository
 ) {
+    val result: MutableLiveData<Boolean> = MutableLiveData()
     /**
      * Callback that responds to a LoginRequest.
      */
@@ -25,10 +27,12 @@ class LoginRepository @Inject constructor(
         /**
          * Function executed when the result response with a 2XX HTTP code.
          */
-        override fun onResponse(c: Call<Wrapper<Login>>, r: Response<Wrapper<Login>>) = if (r.isSuccessful)
-            storeSession(r) // Store the session if the response was successful.
-        else
-            onFailure(c, HttpException(r)) // Report a failure if the response was not successful.
+        override fun onResponse(c: Call<Wrapper<Login>>, r: Response<Wrapper<Login>>) =
+            if (r.isSuccessful)
+                storeSession(r) // Store the session if the response was successful.
+            else
+                onFailure(c, HttpException(r)) // Report a failure if the response was not successful.
+
 
         /**
          * Function that gets called when the web call doesn't respond with a 2xx HTTP code.
@@ -52,6 +56,9 @@ class LoginRepository @Inject constructor(
         if (wrapper?.success == 1 && wrapper.data != null) {
             val session = Session(wrapper.data.accessToken, 0L)
             repo.persistSession(session)
+            result.postValue(true)
+        } else {
+            result.postValue(false)
         }
     }
 }
