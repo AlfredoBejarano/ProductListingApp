@@ -16,6 +16,13 @@ import me.alfredobejarano.productlisting.BuildConfig
  **/
 @Database(entities = [Session::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
+    /**
+     * Retrieves a reference of [SessionDao] to
+     * acces database operations of the [Session] entity.
+     * @return Reference to the [SessionDao].
+     */
+    abstract fun getSessionDao(): SessionDao
+
     companion object {
         // Used for singleton initialization
         @Volatile

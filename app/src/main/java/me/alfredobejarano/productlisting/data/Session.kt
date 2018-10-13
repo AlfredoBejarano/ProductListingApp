@@ -1,5 +1,6 @@
 package me.alfredobejarano.productlisting.data
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -19,5 +20,6 @@ data class Session(
     var expirationTime: Long
 ) {
     @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "primary_key")
     val id: Int = 1
 }
