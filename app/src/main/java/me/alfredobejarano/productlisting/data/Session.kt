@@ -21,5 +21,5 @@ data class Session(
 ) {
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "primary_key")
-    val id: Int = 1
+    var id: Int = 1
 }
