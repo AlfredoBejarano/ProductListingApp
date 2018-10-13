@@ -15,8 +15,9 @@ import androidx.room.PrimaryKey
  **/
 @Entity(tableName = "sessions_table")
 data class Session(
-    @PrimaryKey(autoGenerate = false)
-    val id: Int = 1,
     var token: String,
     var expirationTime: Long
-)
+) {
+    @PrimaryKey(autoGenerate = false)
+    val id: Int = 1
+}

@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName
  * @since 12/10/2018 - 07:44 PM
  * @version 1.0
  **/
-data class Response<T>(
+data class Wrapper<T>(
     @Expose
     @SerializedName("success")
     val success: Int,
