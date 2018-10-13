@@ -15,6 +15,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', "HeaderLang", '"lang: es_mx"'
+        buildConfigField 'String', "HeaderAppVersion", '"app_version: Android 1.0"'
+        buildConfigField 'String', "BaseURL", '"http://dev.estandares.kokonutstudio.com:8080/api/"'
     }
     buildTypes {
         release {
