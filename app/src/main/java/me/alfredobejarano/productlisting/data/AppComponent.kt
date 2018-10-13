@@ -12,7 +12,12 @@ import javax.inject.Singleton
  * @version 1.0
  **/
 @Singleton
-@Component(modules = [WebserviceModule::class, LoginRepositoryModule::class])
+@Component(
+    modules = [
+        WebserviceModule::class,
+        LoginRepositoryModule::class,
+        SessionRepositoryModule::class]
+)
 interface AppComponent {
     /**
      * Provides injection for a [Webservice] implementation.

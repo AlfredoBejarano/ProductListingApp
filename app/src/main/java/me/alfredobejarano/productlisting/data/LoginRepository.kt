@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 /**
  *
- * Repository class for the login related object and entities.
+ * Repository class for the login objects.
  *
  * @author Alfredo Bejarano
  * @since 12/10/2018 - 08:27 PM
@@ -16,7 +16,7 @@ import javax.inject.Inject
  **/
 class LoginRepository @Inject constructor(
     private val webservice: Webservice,
-    private val sessionDao: SessionDao
+    private val repo: SessionRepository
 ) {
     /**
      * Callback that responds to a LoginRequest.
@@ -51,18 +51,7 @@ class LoginRepository @Inject constructor(
         val wrapper = response.body()
         if (wrapper?.success == 1 && wrapper.data != null) {
             val session = Session(wrapper.data.accessToken, 0L)
-            sessionDao.persistSession(session)
+            repo.persistSession(session)
         }
     }
-
-    /**
-     * Fetches the current session from the database.
-     * @return [androidx.lifecycle.LiveData] object containing the [Session] object.
-     */
-    fun retrieveSession() = sessionDao.getCurrentSession()
-
-    /**
-     * Deletes the current session from the database.
-     */
-    fun deleteSession() = sessionDao.deleteSession()
 }
