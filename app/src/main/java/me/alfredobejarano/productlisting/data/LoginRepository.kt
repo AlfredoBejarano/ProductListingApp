@@ -14,7 +14,10 @@ import javax.inject.Inject
  * @since 12/10/2018 - 08:27 PM
  * @version 1.0
  **/
-class LoginRepository @Inject constructor(private val webservice: Webservice) {
+class LoginRepository @Inject constructor(
+    private val webservice: Webservice,
+    private val sessionDao: SessionDao
+) {
     /**
      * Callback that responds to a LoginRequest.
      */
@@ -48,6 +51,18 @@ class LoginRepository @Inject constructor(private val webservice: Webservice) {
         val wrapper = response.body()
         if (wrapper?.success == 1 && wrapper.data != null) {
             val session = Session(wrapper.data.accessToken, 0L)
+            sessionDao.persistSession(session)
         }
     }
+
+    /**
+     * Fetches the current session from the database.
+     * @return [androidx.lifecycle.LiveData] object containing the [Session] object.
+     */
+    fun retrieveSession() = sessionDao.getCurrentSession()
+
+    /**
+     * Deletes the current session from the database.
+     */
+    fun deleteSession() = sessionDao.deleteSession()
 }
