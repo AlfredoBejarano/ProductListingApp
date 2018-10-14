@@ -50,5 +50,6 @@ data class Post(
     /**
      * Property that defines since when this post object has been cached.
      */
+    @ColumnInfo(name = "inserted_at")
     var cachedSince: Long = Calendar.getInstance().timeInMillis
 }

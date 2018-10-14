@@ -14,7 +14,7 @@ import me.alfredobejarano.productlisting.BuildConfig
  * @since 12/10/2018 - 08:53 PM
  * @version 1.0
  **/
-@Database(entities = [Session::class], version = 1, exportSchema = false)
+@Database(entities = [Session::class, Post::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     /**
      * Retrieves a reference of [SessionDao] to
@@ -23,6 +23,11 @@ abstract class AppDatabase : RoomDatabase() {
      */
     abstract fun getSessionDao(): SessionDao
 
+    /**
+     * Retrieves an implementation of [PostDao],
+     * allowing access to the database operations.
+     */
+    abstract fun getPostDao(): PostDao
     companion object {
         // Used for singleton initialization
         @Volatile

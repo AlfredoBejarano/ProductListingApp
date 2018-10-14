@@ -48,23 +48,16 @@ class SessionRepository @Inject constructor(
         }
     }
     /**
-     * [MutableLiveData] object that provides observation to the UI controllers
+      * [MutableLiveData] object that provides observation to the UI controllers
      * about the status of fetching and storing a user session in the device.
      */
     var sessionFetched: MutableLiveData<Boolean> = MutableLiveData()
-    /**
-     * [LiveData] object that provides observation to the UI controllers
-     * about the stored session in the device local database.
-     */
-    var currentSession: LiveData<List<Session>> = MutableLiveData()
 
     /**
      * Fetches the current session from the database.
      * @return [LiveData] object containing the [Session] object within a [List].
      */
-    fun retrieveSession() {
-        currentSession = dao.getCurrentSession()
-    }
+    fun retrieveSession() = dao.getCurrentSession()
 
     /**
      * Deletes the current session from the database.

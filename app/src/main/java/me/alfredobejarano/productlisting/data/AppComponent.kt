@@ -15,6 +15,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         WebserviceModule::class,
+        PostRepositoryModule::class,
         LoginRepositoryModule::class,
         SessionRepositoryModule::class]
 )
@@ -33,4 +34,9 @@ interface AppComponent {
      * Provides injection for the [LoginRepository] class.
      */
     fun provideLoginRepository(): LoginRepository
+
+    /**
+     * Provides injection for the [PostRepository] class.
+     */
+    fun providePostRepository(): PostRepository
 }
