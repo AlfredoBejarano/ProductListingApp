@@ -72,12 +72,6 @@ class SessionRepository @Inject constructor(
     fun deleteSession() = dao.deleteSession()
 
     /**
-     * Stores a session from a response.
-     * @param session The session to be persisted.
-     */
-    private fun persistSession(session: Session) = dao.persistSession(session)
-
-    /**
      * Uses an [access token][String] to retrieve the details of a User.
      * @param accessToken The token for the user, retrieved via login.
      * @see LoginRepository
