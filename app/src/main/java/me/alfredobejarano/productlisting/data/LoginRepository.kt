@@ -19,7 +19,10 @@ class LoginRepository @Inject constructor(
     private val webservice: Webservice,
     private val repo: SessionRepository
 ) {
-    val result: MutableLiveData<Boolean> = MutableLiveData()
+    /**
+     * LiveData object that provides observation for the login process.
+     */
+    val result: MutableLiveData<Boolean> = repo.sessionFetched
     /**
      * Callback that responds to a LoginRequest.
      */
@@ -27,12 +30,11 @@ class LoginRepository @Inject constructor(
         /**
          * Function executed when the result response with a 2XX HTTP code.
          */
-        override fun onResponse(c: Call<Wrapper<Login>>, r: Response<Wrapper<Login>>) =
-            if (r.isSuccessful)
-                storeSession(r) // Store the session if the response was successful.
-            else
-                onFailure(c, HttpException(r)) // Report a failure if the response was not successful.
-
+        override fun onResponse(c: Call<Wrapper<Login>>, r: Response<Wrapper<Login>>): Unit = r.body()?.data?.let {
+            repo.fetchUserFromToken(it.accessToken)
+        }?.run {
+            onFailure(c, HttpException(r))
+        } ?: Unit
 
         /**
          * Function that gets called when the web call doesn't respond with a 2xx HTTP code.
@@ -46,19 +48,4 @@ class LoginRepository @Inject constructor(
      */
     fun performLoginRequest(request: LoginRequest) =
         webservice.performLoginRequest(request).enqueue(loginCallback)
-
-    /**
-     * Stores a session from a response.
-     * @param response The valid response object from the server.
-     */
-    private fun storeSession(response: Response<Wrapper<Login>>) {
-        val wrapper = response.body()
-        if (wrapper?.success == 1 && wrapper.data != null) {
-            val session = Session(wrapper.data.accessToken, 0L)
-            repo.persistSession(session)
-            result.postValue(true)
-        } else {
-            result.postValue(false)
-        }
-    }
 }
