@@ -16,10 +16,11 @@ import androidx.room.PrimaryKey
  **/
 @Entity(tableName = "sessions_table")
 data class Session(
-    var token: String,
-    var expirationTime: Long
-) {
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "primary_key")
-    var id: Int = 1
-}
+    var id: String,
+    var name: String,
+    var token: String,
+    var email: String,
+    var image: String
+)
