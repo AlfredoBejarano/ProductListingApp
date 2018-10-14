@@ -1,9 +1,12 @@
 package me.alfredobejarano.productlisting.data
 
-import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.util.*
 
 /**
  *
@@ -15,9 +18,12 @@ import com.google.gson.annotations.SerializedName
  * @since 14/10/2018 - 01:05 AM
  * @version 1.0
  **/
+@Entity(tableName = "posts_table")
 data class Post(
     @Expose
+    @ColumnInfo(name = "pk")
     @SerializedName("idPost")
+    @PrimaryKey(autoGenerate = false)
     val id: Int,
     @Expose
     @SerializedName("body")
@@ -40,40 +46,9 @@ data class Post(
     @Expose
     @SerializedName("created_at")
     var creationTimestamp: String
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-        parcel.readInt(),
-        parcel.readString() ?: "",
-        parcel.readString() ?: "",
-        parcel.readInt(),
-        parcel.readString() ?: "",
-        parcel.readString() ?: "",
-        parcel.readString() ?: "",
-        parcel.readString() ?: ""
-    )
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeInt(id)
-        parcel.writeString(body)
-        parcel.writeString(slug)
-        parcel.writeInt(title)
-        parcel.writeString(header)
-        parcel.writeString(footer)
-        parcel.writeString(updateTimestamp)
-        parcel.writeString(creationTimestamp)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<Post> {
-        override fun createFromParcel(parcel: Parcel): Post {
-            return Post(parcel)
-        }
-
-        override fun newArray(size: Int): Array<Post?> {
-            return arrayOfNulls(size)
-        }
-    }
+) {
+    /**
+     * Property that defines since when this post object has been cached.
+     */
+    var cachedSince: Long = Calendar.getInstance().timeInMillis
 }
