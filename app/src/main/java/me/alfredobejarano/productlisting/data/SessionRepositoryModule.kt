@@ -28,6 +28,6 @@ class SessionRepositoryModule(private val ctx: Context) {
      */
     @Provides
     @Singleton
-    fun provideSessionRepository(dao: SessionDao): SessionRepository =
-        SessionRepository(dao)
+    fun provideSessionRepository(dao: SessionDao, ws: Webservice): SessionRepository =
+        SessionRepository(dao, ws)
 }
