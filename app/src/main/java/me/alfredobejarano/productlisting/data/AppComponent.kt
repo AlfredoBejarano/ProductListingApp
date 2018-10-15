@@ -2,6 +2,7 @@ package me.alfredobejarano.productlisting.data
 
 import dagger.Component
 import me.alfredobejarano.productlisting.LoginFragment
+import me.alfredobejarano.productlisting.PostFragment
 import me.alfredobejarano.productlisting.PostsFragment
 import me.alfredobejarano.productlisting.SplashFragment
 import me.alfredobejarano.productlisting.viewmodel.ViewModelFactoryModule
@@ -40,6 +41,10 @@ interface AppComponent {
      */
     fun inject(postsFragment: PostsFragment)
 
+    /**
+     * Allows injection for a [PostFragment] class.
+     */
+    fun inject(postFragment: PostFragment)
 
     /**
      * Provides injection for a [Webservice] implementation.
