@@ -13,7 +13,10 @@
         <com.facebook.drawee.view.SimpleDraweeView
                 android:id="@+id/picture"
                 android:layout_width="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerInside"
+                app:actualImageScaleType="centerInside"
+                app:placeholderImageScaleType="centerInside"
+                app:failureImageScaleType="centerInside"
                 app:layout_constraintBottom_toBottomOf="@id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
