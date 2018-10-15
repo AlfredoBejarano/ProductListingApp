@@ -1,6 +1,7 @@
 package me.alfredobejarano.productlisting.data
 
 import androidx.lifecycle.MutableLiveData
+import me.alfredobejarano.productlisting.utilities.runOnIOThread
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
@@ -40,7 +41,12 @@ class PostRepository @Inject constructor(
          */
         override fun onResponse(c: Call<Wrapper<PostsList>>, r: Response<Wrapper<PostsList>>) =
             r.body()?.data?.let {
-                results.postValue(it.results)
+                runOnIOThread {
+                    it.results.forEach {
+                        dao.insertOrUpdate(it)
+                    }
+                    results.postValue(it.results)
+                }
             } ?: run {
                 onFailure(c, HttpException(r))
             }

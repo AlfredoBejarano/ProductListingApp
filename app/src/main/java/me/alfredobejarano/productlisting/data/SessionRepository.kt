@@ -44,14 +44,14 @@ class SessionRepository @Inject constructor(
                 dao.persistSession(
                     Session(it.id, "${it.name} ${it.surName}", token, it.email, it.image)
                 )
+                sessionFetched.postValue(true)
             }
-            sessionFetched.postValue(true)
         } ?: run {
             onFailure(c, HttpException(r))
         }
     }
     /**
-      * [MutableLiveData] object that provides observation to the UI controllers
+     * [MutableLiveData] object that provides observation to the UI controllers
      * about the status of fetching and storing a user session in the device.
      */
     var sessionFetched: MutableLiveData<Boolean> = MutableLiveData()
