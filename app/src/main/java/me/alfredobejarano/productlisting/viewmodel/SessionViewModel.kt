@@ -3,7 +3,6 @@ package me.alfredobejarano.productlisting.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import me.alfredobejarano.productlisting.data.Session
 import me.alfredobejarano.productlisting.data.SessionRepository
 import javax.inject.Inject
 
@@ -21,8 +20,7 @@ class SessionViewModel
     /**
      * [LiveData] reference that provides observation to the UI for the session.
      */
-    var session: LiveData<List<Session>> =
-        repo.retrieveSession()
+    var session = repo.retrieveSession()
 
     /**
      * Simple [ViewModelProvider.NewInstanceFactory] subclass

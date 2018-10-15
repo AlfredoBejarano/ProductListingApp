@@ -3,6 +3,7 @@ package me.alfredobejarano.productlisting.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import me.alfredobejarano.productlisting.data.PostRepository
+import me.alfredobejarano.productlisting.utilities.runOnIOThread
 import javax.inject.Inject
 
 /**
@@ -15,7 +16,7 @@ import javax.inject.Inject
  * @version 1.0
  **/
 class PostViewModel
-@Inject constructor(private val repo: PostRepository) {
+@Inject constructor(private val repo: PostRepository) : ViewModel() {
     /**
      * Property that allows observation for a list of posts.
      */
@@ -24,7 +25,9 @@ class PostViewModel
     /**
      * Retrieves a list of posts from the repository.
      */
-    fun getPostsList() = repo.fetchPosts()
+    fun getPostsList() = runOnIOThread {
+        repo.fetchPosts()
+    }
 
     /**
      * Fetches a cached post from the database.
