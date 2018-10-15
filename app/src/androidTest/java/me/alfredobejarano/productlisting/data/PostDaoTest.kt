@@ -1,7 +1,6 @@
 package me.alfredobejarano.productlisting.data
 
 import org.junit.Test
-import org.mockito.Mockito
 
 /**
  *
@@ -20,7 +19,8 @@ class PostDaoTest : BaseDaoTest() {
     @Test
     fun insertPost_SavePost() {
         // Mock a session object.
-        val post = Mockito.mock(Post::class.java)
+        val post =
+            Post(1, "", "", 0, "", "", "", "")
         // Persist the mock post.
         dao.insertOrUpdate(post)
         // Now, verify that the post was saved.
@@ -33,7 +33,8 @@ class PostDaoTest : BaseDaoTest() {
     @Test
     fun insertPost_DeletePost() {
         // Mock a session object
-        val post = Mockito.mock(Post::class.java)
+        val post =
+            Post(1, "", "", 0, "", "", "", "")
         // Persist the session
         dao.insertOrUpdate(post)
         // Now, delete the session.
@@ -64,7 +65,9 @@ class PostDaoTest : BaseDaoTest() {
     fun insertPosts_ReadPosts() {
         // Add 5 post mocks to the database.
         repeat(5) {
-            dao.insertOrUpdate(Mockito.mock(Post::class.java))
+            dao.insertOrUpdate(
+                Post(1, "", "", 0, "", "", "", "")
+            )
         }
         // Assert that the posts in the table are 5.
         assert(dao.read().value?.size == 5)

@@ -50,6 +50,15 @@ class PostsAdapter(var elements: List<Post>?) : RecyclerView.Adapter<PostsAdapte
     override fun getItemViewType(position: Int) = R.layout.item_product
 
     /**
+     * Sets a new data set of posts to the adapter.
+     * @param posts The new posts for the adapter.
+     */
+    fun setPosts(posts: List<Post>) {
+        elements = posts
+        notifyDataSetChanged()
+    }
+
+    /**
      * Simple [ViewHolder] class that represents
      * the visuals of a Post in kotlin code.
      */

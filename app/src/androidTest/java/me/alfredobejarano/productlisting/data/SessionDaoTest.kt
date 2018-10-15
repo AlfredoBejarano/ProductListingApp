@@ -1,7 +1,6 @@
 package me.alfredobejarano.productlisting.data
 
 import org.junit.Test
-import org.mockito.Mockito
 
 /**
  *
@@ -20,7 +19,7 @@ class SessionDaoTest : BaseDaoTest() {
     @Test
     fun insertSession_SaveSession() {
         // Mock a session object.
-        val session = Mockito.mock(Session::class.java)
+        val session = Session("", "", "", "", "")
         // Persist the mock session.
         dao.persistSession(session)
         // Now, verify that the session was stored.
@@ -33,7 +32,7 @@ class SessionDaoTest : BaseDaoTest() {
     @Test
     fun insertSession_DeleteSession() {
         // Mock a session object
-        val session = Mockito.mock(Session::class.java)
+        val session = Session("", "", "", "", "")
         // Persist the session
         dao.persistSession(session)
         // Now, delete the session.
