@@ -33,7 +33,7 @@ data class Post(
     val slug: String,
     @Expose
     @SerializedName("title")
-    val title: Int,
+    val title: String,
     @Expose
     @SerializedName("header")
     val header: String,
@@ -45,7 +45,10 @@ data class Post(
     val updateTimestamp: String,
     @Expose
     @SerializedName("created_at")
-    var creationTimestamp: String
+    var creationTimestamp: String,
+    @Expose
+    @SerializedName("image_url")
+    var imageURL: String
 ) {
     /**
      * Property that defines since when this post object has been cached.

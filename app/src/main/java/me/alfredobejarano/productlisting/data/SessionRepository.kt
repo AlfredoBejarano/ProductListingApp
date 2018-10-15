@@ -2,6 +2,7 @@ package me.alfredobejarano.productlisting.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import me.alfredobejarano.productlisting.utilities.runOnIOThread
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.HttpException
@@ -39,9 +40,11 @@ class SessionRepository @Inject constructor(
          * Stores the retrieved user profile as a session in the local storage databse.
          */
         override fun onResponse(c: Call<Wrapper<User>>, r: Response<Wrapper<User>>) = r.body()?.data?.let {
-            dao.persistSession(
-                Session(it.id, "${it.name} ${it.surName}", token, it.email, it.image)
-            )
+            runOnIOThread {
+                dao.persistSession(
+                    Session(it.id, "${it.name} ${it.surName}", token, it.email, it.image)
+                )
+            }
             sessionFetched.postValue(true)
         } ?: run {
             onFailure(c, HttpException(r))
@@ -71,6 +74,6 @@ class SessionRepository @Inject constructor(
      */
     fun fetchUserFromToken(accessToken: String) {
         token = accessToken
-        webservice.fetchUserProfile(accessToken).enqueue(profileCallback)
+        webservice.fetchUserProfile("Bearer $accessToken").enqueue(profileCallback)
     }
 }

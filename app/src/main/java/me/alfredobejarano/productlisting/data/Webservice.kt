@@ -2,10 +2,7 @@ package me.alfredobejarano.productlisting.data
 
 import me.alfredobejarano.productlisting.BuildConfig
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Headers
+import retrofit2.http.*
 
 /**
  *
@@ -20,7 +17,7 @@ interface Webservice {
      * API definition for performing a login request that
      * retrieves the access token info for the login.
      */
-    @GET("login")
+    @POST("login")
     @Headers(BuildConfig.HeaderLang, BuildConfig.HeaderAppVersion)
     fun performLoginRequest(@Body request: LoginRequest): Call<Wrapper<Login>>
 

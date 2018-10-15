@@ -43,7 +43,7 @@ class PostsList(
     @SerializedName("next_page_url")
     val nextPageURL: String,
     @Expose
-    @SerializedName("list_post")
+    @SerializedName("list_post", alternate = ["data"])
     val results: List<Post>,
     @Expose
     @SerializedName("ﬁrst_page_url")

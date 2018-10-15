@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.facebook.drawee.view.SimpleDraweeView
 import me.alfredobejarano.productlisting.R
 import me.alfredobejarano.productlisting.data.Post
 
@@ -38,8 +39,9 @@ class PostsAdapter(var elements: List<Post>?) : RecyclerView.Adapter<PostsAdapte
      */
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         val post = elements?.get(position)
-        holder.slug.text = post?.slug ?: ""
+        holder.title.text = post?.title ?: ""
         holder.description.text = post?.body ?: ""
+        holder.picture.setImageURI(post?.imageURL ?: "")
     }
 
     /**
@@ -63,7 +65,8 @@ class PostsAdapter(var elements: List<Post>?) : RecyclerView.Adapter<PostsAdapte
      * the visuals of a Post in kotlin code.
      */
     class PostViewHolder(itemView: View) : ViewHolder(itemView) {
-        internal val slug: TextView = itemView.findViewById(R.id.slug)
+        internal val title: TextView = itemView.findViewById(R.id.title)
+        internal val picture: SimpleDraweeView = itemView.findViewById(R.id.picture)
         internal val description: TextView = itemView.findViewById(R.id.description)
     }
 }

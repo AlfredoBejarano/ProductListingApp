@@ -1,9 +1,9 @@
 package me.alfredobejarano.productlisting.data
 
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import dagger.Component
+import me.alfredobejarano.productlisting.LoginFragment
+import me.alfredobejarano.productlisting.PostsFragment
+import me.alfredobejarano.productlisting.SplashFragment
 import me.alfredobejarano.productlisting.viewmodel.ViewModelFactoryModule
 import javax.inject.Singleton
 
@@ -26,19 +26,20 @@ import javax.inject.Singleton
 )
 interface AppComponent {
     /**
-     * Allows injection for a fragment subclass.
+     * Allows injection for a [SplashFragment] class.
      */
-    fun inject(fragment: Fragment)
+    fun inject(splashFragment: SplashFragment)
 
     /**
-     * Allows injection for a ViewModel subclass
+     * Allows injection for a [LoginFragment] class.
      */
-    fun inject(viewModel: ViewModel)
+    fun inject(loginFragment: LoginFragment)
 
     /**
-     * Allows injection for a Activity subclass.
+     * Allows injection for a [PostsFragment] class.
      */
-    fun inject(activity: AppCompatActivity)
+    fun inject(postsFragment: PostsFragment)
+
 
     /**
      * Provides injection for a [Webservice] implementation.
