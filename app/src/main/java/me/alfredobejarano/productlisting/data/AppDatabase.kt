@@ -14,7 +14,7 @@ import me.alfredobejarano.productlisting.BuildConfig
  * @since 12/10/2018 - 08:53 PM
  * @version 1.0
  **/
-@Database(entities = [Session::class, Post::class], version = 3, exportSchema = false)
+@Database(entities = [Session::class, Post::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     /**
      * Retrieves a reference of [SessionDao] to
@@ -49,7 +49,7 @@ abstract class AppDatabase : RoomDatabase() {
             Room.databaseBuilder(
                 ctx,
                 AppDatabase::class.java,
-                "{${BuildConfig.APPLICATION_ID}-db}"
+                "${BuildConfig.APPLICATION_ID}-db"
             ).fallbackToDestructiveMigration().build()
     }
 }

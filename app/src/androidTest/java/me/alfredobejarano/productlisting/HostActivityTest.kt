@@ -40,17 +40,12 @@ class HostActivityTest {
     fun initValidLogin() {
         correctUsername = "android@kokonutstudio.com"
         correctPassword = "12345678"
-    }
-
-    /**
-     * Deletes the local database before running any test.
-     */
-    @Before
-    fun clearDatabase() =
+        // Deletes the local database before running any test.
         InstrumentationRegistry
             .getInstrumentation()
             .targetContext
-            .deleteDatabase("{${BuildConfig.APPLICATION_ID}-db}")
+            .deleteDatabase("${BuildConfig.APPLICATION_ID}-db")
+    }
 
     /**
      * Tests the basic flow for the app, that is:
@@ -65,7 +60,7 @@ class HostActivityTest {
         // Proceed to test the login actions
         typeCredentials_performValidLoginTest()
         // Wait for the network request to pass.
-        Thread.sleep(1000)
+        Thread.sleep(3000)
         // After that, proceed to test the list of posts.
         scrollOnList_selectAnElementTest()
         // After selecting a post, assert it gets displayed.
