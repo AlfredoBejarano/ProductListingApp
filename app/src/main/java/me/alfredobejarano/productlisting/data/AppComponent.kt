@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import dagger.Component
+import me.alfredobejarano.productlisting.viewmodel.ViewModelFactoryModule
 import javax.inject.Singleton
 
 /**
@@ -20,6 +21,7 @@ import javax.inject.Singleton
         WebserviceModule::class,
         PostRepositoryModule::class,
         LoginRepositoryModule::class,
+        ViewModelFactoryModule::class,
         SessionRepositoryModule::class]
 )
 interface AppComponent {
@@ -49,6 +51,11 @@ interface AppComponent {
     fun provideSessionDao(): SessionDao
 
     /**
+     * Provides injection for [PostDao] class.
+     */
+    fun providePostDao(): PostDao
+
+    /**
      * Provides injection for the [LoginRepository] class.
      */
     fun provideLoginRepository(): LoginRepository
@@ -57,4 +64,9 @@ interface AppComponent {
      * Provides injection for the [PostRepository] class.
      */
     fun providePostRepository(): PostRepository
+
+    /**
+     * Provides injection for a [SessionRepository] class.
+     */
+    fun provideSessionRepository(): SessionRepository
 }

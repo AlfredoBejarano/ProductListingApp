@@ -2,6 +2,7 @@ package me.alfredobejarano.productlisting.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import me.alfredobejarano.productlisting.data.LoginRepository
 import me.alfredobejarano.productlisting.data.LoginRequest
 import me.alfredobejarano.productlisting.utilities.runOnIOThread
@@ -31,5 +32,18 @@ class LoginViewModel
      */
     fun requestLogin(username: String, password: String) = runOnIOThread {
         repo.performLoginRequest(LoginRequest(username, password))
+    }
+
+    /**
+     * Simple [ViewModelProvider.NewInstanceFactory] subclass
+     * that provides custom constructor initialization for
+     * a [LoginViewModel] class.
+     */
+    class Factory
+    @Inject constructor(private val repo: LoginRepository) : ViewModelProvider.NewInstanceFactory() {
+        @Suppress("UNCHECKED_CAST")
+        override fun <T : ViewModel?> create(viewModelClass: Class<T>): T {
+            return LoginViewModel(repo) as T
+        }
     }
 }
