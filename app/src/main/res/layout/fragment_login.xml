@@ -20,6 +20,8 @@
             android:layout_width="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/login_button"
             app:layout_constraintStart_toStartOf="parent"
