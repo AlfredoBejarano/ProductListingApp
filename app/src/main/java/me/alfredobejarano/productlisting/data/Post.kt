@@ -22,7 +22,7 @@ import java.util.*
 data class Post(
     @Expose
     @ColumnInfo(name = "pk")
-    @SerializedName("idPost")
+    @SerializedName("id_post")
     @PrimaryKey(autoGenerate = false)
     val id: Int,
     @Expose
