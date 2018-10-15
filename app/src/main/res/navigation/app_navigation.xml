@@ -14,7 +14,9 @@
     </fragment>
     <fragment android:id="@+id/postsFragment"
               android:name="me.alfredobejarano.productlisting.PostsFragment"
-              android:label="PostsFragment"/>
+              android:label="PostsFragment">
+        <action android:id="@+id/action_postsFragment_to_postFragment" app:destination="@id/postFragment"/>
+    </fragment>
 
     <fragment android:id="@+id/splashFragment" android:name="me.alfredobejarano.productlisting.SplashFragment"
               android:label="SplashFragment">
@@ -26,6 +28,10 @@
                 app:launchSingleTop="true"
                 app:popUpTo="@id/splashFragment"
                 app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment android:id="@+id/postFragment" android:name="me.alfredobejarano.productlisting.PostFragment"
+              android:label="fragment_post" tools:layout="@layout/fragment_post">
+        <argument android:name="postId" app:argType="integer" android:defaultValue="-1"/>
     </fragment>
 
 </navigation>

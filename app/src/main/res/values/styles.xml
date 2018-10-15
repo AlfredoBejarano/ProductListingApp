@@ -11,4 +11,8 @@
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/background_splash</item>
     </style>
+    <style name="title">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorMaterialPrimaryText</item>
+    </style>
 </resources>

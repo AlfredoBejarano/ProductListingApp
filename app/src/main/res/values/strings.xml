@@ -8,4 +8,5 @@
     <string name="login">Login</string>
     <string name="login_failed">Login attempt failed</string>
     <string name="no_posts_found">No posts were found</string>
+    <string name="post_not_found">Post not found</string>
 </resources>
