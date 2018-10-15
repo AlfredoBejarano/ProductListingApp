@@ -21,4 +21,4 @@ private val IO_EXECUTOR = Executors.newSingleThreadExecutor()
  * Extension function for the [ViewModel] class that allows
  * executing a function in a worker thread.
  */
-fun ViewModel.runOnIOThread(f: () -> Unit) = IO_EXECUTOR.execute(f)
+fun runOnIOThread(f: () -> Unit) = IO_EXECUTOR.execute(f)
