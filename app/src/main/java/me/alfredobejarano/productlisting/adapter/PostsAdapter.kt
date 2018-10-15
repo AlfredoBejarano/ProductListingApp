@@ -7,8 +7,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.facebook.drawee.view.SimpleDraweeView
+import me.alfredobejarano.productlisting.PostsFragment
 import me.alfredobejarano.productlisting.R
 import me.alfredobejarano.productlisting.data.Post
+import me.alfredobejarano.productlisting.utilities.fromHTML
 
 /**
  *
@@ -38,10 +40,21 @@ class PostsAdapter(var elements: List<Post>?) : RecyclerView.Adapter<PostsAdapte
      * @param position Position of the ViewHolder in the adapter.
      */
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
+        // Get the post from the elements.
         val post = elements?.get(position)
+        // Display the post data in the view.
         holder.title.text = post?.title ?: ""
-        holder.description.text = post?.body ?: ""
+        holder.description.text = post?.body?.fromHTML() ?: ""
         holder.picture.setImageURI(post?.imageURL ?: "")
+        // Enable a Click listener to the selected post.
+        holder.itemView.setOnClickListener {
+            // Check if the ViewHolder context implements the required interface.
+            if (it.context is PostsFragment.OnPostClickedListener) {
+                // If so, report which post was clicked.
+                (it.context as PostsFragment.OnPostClickedListener)
+                    .onPostClicked(post?.id ?: -1)
+            }
+        }
     }
 
     /**
