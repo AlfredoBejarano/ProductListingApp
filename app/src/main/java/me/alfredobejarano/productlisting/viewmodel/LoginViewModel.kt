@@ -27,11 +27,10 @@ class LoginViewModel
     /**
      * Builds a [LoginRequest] object and performs a login request
      * to the repository class.
-     * @param username The username value for the login request.
-     * @param password The password value for the login request.
+     * @param request Model class containing the login details.
      */
-    fun requestLogin(username: String, password: String) = runOnIOThread {
-        repo.performLoginRequest(LoginRequest(username, password))
+    fun requestLogin(request: LoginRequest) = runOnIOThread {
+        repo.performLoginRequest(request)
     }
 
     /**
