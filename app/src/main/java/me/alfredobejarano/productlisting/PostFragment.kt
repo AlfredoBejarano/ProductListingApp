@@ -40,8 +40,8 @@ class PostFragment : Fragment() {
         // Get the selected post id.
         val postId = PostFragmentArgs.fromBundle(arguments).postId
         // Set the post to the binding.
-        vm.getPost(postId).observe(this, Observer {
-            it?.let {
+        vm.getPost(postId).observe(this, Observer { post ->
+            post?.let {
                 binding.post = it
                 binding.body.text = it.body.fromHTML()
                 binding.picture.setImageURI(it.imageURL)

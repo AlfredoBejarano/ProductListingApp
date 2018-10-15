@@ -3,9 +3,7 @@ package me.alfredobejarano.productlisting
 import androidx.test.espresso.Espresso.closeSoftKeyboard
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
@@ -17,6 +15,8 @@ import org.junit.runner.RunWith
 
 /**
  * Instrumentation test class for [HostActivity].
+ *
+ * NOTE - Delete app cache before running this test.
  *
  * @author Alfredo Bejarano
  * @version 1.0
@@ -45,6 +45,8 @@ class HostActivityTest {
     fun testAppFlow() {
         // Proceed to test the login actions
         typeCredentials_performValidLoginTest()
+        // Wait for the network request to pass.
+        Thread.sleep(1000)
         // After that, proceed to test the list of posts.
         scrollOnList_selectAnElementTest()
     }
