@@ -55,4 +55,13 @@ data class Post(
      */
     @ColumnInfo(name = "inserted_at")
     var cachedSince: Long = Calendar.getInstance().timeInMillis
+
+    companion object {
+        /**
+         * Creates a mocked object of this class, useful for unit tests that can't use Mockito.
+         * (ej. running on an Android VM instead of a JVM).
+         */
+        fun createMock() =
+            Post(1, "", "", "", "", "", "", "", "")
+    }
 }
