@@ -9,29 +9,40 @@
               tools:layout="@layout/fragment_login">
 
         <action android:id="@+id/action_loginFragment_to_postsFragment"
-                app:destination="@id/postsFragment"/>
+                app:destination="@id/postsFragment"
+                app:launchSingleTop="true"
+                app:popUpTo="@id/loginFragment"
+                app:popUpToInclusive="true"/>
 
     </fragment>
     <fragment android:id="@+id/postsFragment"
               android:name="me.alfredobejarano.productlisting.PostsFragment"
               android:label="PostsFragment">
-        <action android:id="@+id/action_postsFragment_to_postFragment" app:destination="@id/postFragment"/>
+        <action android:id="@+id/action_postsFragment_to_postFragment"
+                app:destination="@id/postFragment"/>
     </fragment>
 
-    <fragment android:id="@+id/splashFragment" android:name="me.alfredobejarano.productlisting.SplashFragment"
+    <fragment android:id="@+id/splashFragment"
+              android:name="me.alfredobejarano.productlisting.SplashFragment"
               android:label="SplashFragment">
-        <action android:id="@+id/action_splashFragment_to_postsFragment" app:destination="@id/postsFragment"
+        <action android:id="@+id/action_splashFragment_to_postsFragment"
+                app:destination="@id/postsFragment"
                 app:launchSingleTop="true"
                 app:popUpTo="@id/splashFragment"
                 app:popUpToInclusive="true"/>
-        <action android:id="@+id/action_splashFragment_to_loginFragment" app:destination="@id/loginFragment"
+        <action android:id="@+id/action_splashFragment_to_loginFragment"
+                app:destination="@id/loginFragment"
                 app:launchSingleTop="true"
                 app:popUpTo="@id/splashFragment"
                 app:popUpToInclusive="true"/>
     </fragment>
-    <fragment android:id="@+id/postFragment" android:name="me.alfredobejarano.productlisting.PostFragment"
-              android:label="fragment_post" tools:layout="@layout/fragment_post">
-        <argument android:name="postId" app:argType="integer" android:defaultValue="-1"/>
+    <fragment android:id="@+id/postFragment"
+              android:name="me.alfredobejarano.productlisting.PostFragment"
+              android:label="fragment_post"
+              tools:layout="@layout/fragment_post">
+        <argument android:name="postId"
+                  app:argType="integer"
+                  android:defaultValue="-1"/>
     </fragment>
 
 </navigation>
