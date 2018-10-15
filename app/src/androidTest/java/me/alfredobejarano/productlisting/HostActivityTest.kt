@@ -3,7 +3,9 @@ package me.alfredobejarano.productlisting
 import androidx.test.espresso.Espresso.closeSoftKeyboard
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
@@ -46,6 +48,7 @@ class HostActivityTest {
         // After that, proceed to test the list of posts.
         scrollOnList_selectAnElementTest()
     }
+
 
     /**
      * Scrolls through the list of posts and clicks the third result.

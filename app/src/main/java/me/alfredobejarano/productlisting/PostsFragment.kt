@@ -1,6 +1,7 @@
 package me.alfredobejarano.productlisting
 
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,7 @@ class PostsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? = RecyclerView(requireContext()).also {
         it.id = R.id.postsList
+        it.setBackgroundColor(Color.WHITE)
         it.layoutManager = LinearLayoutManager(requireContext())
         it.adapter = PostsAdapter(null)
     }

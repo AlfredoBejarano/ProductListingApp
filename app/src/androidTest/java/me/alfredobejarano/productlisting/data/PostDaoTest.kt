@@ -20,7 +20,7 @@ class PostDaoTest : BaseDaoTest() {
     fun insertPost_SavePost() {
         // Mock a session object.
         val post =
-            Post(1, "", "", 0, "", "", "", "")
+            Post(1, "", "", "", "", "", "", "", "")
         // Persist the mock post.
         dao.insertOrUpdate(post)
         // Now, verify that the post was saved.
@@ -34,7 +34,7 @@ class PostDaoTest : BaseDaoTest() {
     fun insertPost_DeletePost() {
         // Mock a session object
         val post =
-            Post(1, "", "", 0, "", "", "", "")
+            Post(1, "", "", "", "", "", "", "", "")
         // Persist the session
         dao.insertOrUpdate(post)
         // Now, delete the session.
@@ -50,7 +50,7 @@ class PostDaoTest : BaseDaoTest() {
     fun insertPost_ReadPost() {
         // Create a new post with a known id.
         val post =
-            Post(1, "", "", 0, "", "", "", "")
+            Post(1, "", "", "", "", "", "", "", "")
         // Insert the post to the database.
         dao.insertOrUpdate(post)
         // Assert that the fetched post id is the same as the post stored.
@@ -66,7 +66,7 @@ class PostDaoTest : BaseDaoTest() {
         // Add 5 post mocks to the database.
         repeat(5) {
             dao.insertOrUpdate(
-                Post(1, "", "", 0, "", "", "", "")
+                Post(1, "", "", "", "", "", "", "", "")
             )
         }
         // Assert that the posts in the table are 5.

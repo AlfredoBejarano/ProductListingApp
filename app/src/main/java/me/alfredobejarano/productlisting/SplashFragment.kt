@@ -25,10 +25,7 @@ class SplashFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        context?.theme?.applyStyle(R.style.SplashTheme, true)
-        return View(requireContext())
-    }
+    ) = View(requireContext())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,13 +39,14 @@ class SplashFragment : Fragment() {
         val vm = ViewModelProviders.of(this, vmFactory)[SessionViewModel::class.java]
         // Proceed to observe the fetch of a session in cache.
         vm.session.observe(this, Observer {
+            // Navigate to a destination depending on the session value,
+            val destination = if (it?.isNotEmpty() == true)
+                R.id.action_splashFragment_to_postsFragment
+            else
+                R.id.action_splashFragment_to_loginFragment
+            // Perform the navigation.
             NavHostFragment.findNavController(this)
-                .navigate(
-                    if (it?.isNotEmpty() == true)
-                        R.id.action_splashFragment_to_postsFragment
-                    else
-                        R.id.action_splashFragment_to_loginFragment
-                )
+                .navigate(destination)
         })
     }
 }

@@ -18,8 +18,14 @@
 
     <fragment android:id="@+id/splashFragment" android:name="me.alfredobejarano.productlisting.SplashFragment"
               android:label="SplashFragment">
-        <action android:id="@+id/action_splashFragment_to_postsFragment" app:destination="@id/postsFragment"/>
-        <action android:id="@+id/action_splashFragment_to_loginFragment" app:destination="@id/loginFragment"/>
+        <action android:id="@+id/action_splashFragment_to_postsFragment" app:destination="@id/postsFragment"
+                app:launchSingleTop="true"
+                app:popUpTo="@id/splashFragment"
+                app:popUpToInclusive="true"/>
+        <action android:id="@+id/action_splashFragment_to_loginFragment" app:destination="@id/loginFragment"
+                app:launchSingleTop="true"
+                app:popUpTo="@id/splashFragment"
+                app:popUpToInclusive="true"/>
     </fragment>
 
 </navigation>
