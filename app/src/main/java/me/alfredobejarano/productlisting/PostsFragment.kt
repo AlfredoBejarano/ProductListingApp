@@ -18,7 +18,8 @@ import me.alfredobejarano.productlisting.viewmodel.PostViewModel
 import javax.inject.Inject
 
 /**
- * A simple [Fragment] subclass.
+ * A simple [Fragment] subclass that displays a list
+ * of [posts][Post] in a RecyclerView.
  *
  */
 class PostsFragment : Fragment() {
@@ -48,5 +49,17 @@ class PostsFragment : Fragment() {
             }
         })
         vm.getPostsList()
+    }
+
+    /**
+     * Interface that defines interactions for a Post element
+     * in the RecyclerView.
+     */
+    interface OnPostClickedListener {
+        /**
+         * This function gets called when a post gets clicked.
+         * @param postId Id of the post that was clicked.
+         */
+        fun onPostClicked(postId: Int)
     }
 }

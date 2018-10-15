@@ -9,7 +9,17 @@ import androidx.navigation.Navigation.findNavController
  * host for all the destinations of the app using the new
  * android jetpack navigation component.
  */
-class HostActivity : AppCompatActivity() {
+class HostActivity : AppCompatActivity(), PostsFragment.OnPostClickedListener {
+    override fun onPostClicked(postId: Int) {
+        // Use safe-args to navigate to the selected post.
+        val directions = PostsFragmentDirections
+            .actionPostsFragmentToPostFragment()
+            .setPostId(postId)
+        // Navigate to the postFragment with the selected id.
+        findNavController(this, R.id.nav_host_fragment)
+            .navigate(directions)
+    }
+
     /**
      * Create this activity and set its layout.
      */
