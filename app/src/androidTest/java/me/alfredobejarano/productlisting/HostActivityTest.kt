@@ -3,9 +3,12 @@ package me.alfredobejarano.productlisting
 import androidx.test.espresso.Espresso.closeSoftKeyboard
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import me.alfredobejarano.productlisting.adapter.PostsAdapter
 import org.junit.Before
@@ -15,8 +18,6 @@ import org.junit.runner.RunWith
 
 /**
  * Instrumentation test class for [HostActivity].
- *
- * NOTE - Delete app cache before running this test.
  *
  * @author Alfredo Bejarano
  * @version 1.0
@@ -41,6 +42,24 @@ class HostActivityTest {
         correctPassword = "12345678"
     }
 
+    /**
+     * Deletes the local database before running any test.
+     */
+    @Before
+    fun clearDatabase() =
+        InstrumentationRegistry
+            .getInstrumentation()
+            .targetContext
+            .deleteDatabase("{${BuildConfig.APPLICATION_ID}-db}")
+
+    /**
+     * Tests the basic flow for the app, that is:
+     * - Asserting a session exists.
+     * - A session doesn't exists, so perform a login.
+     * - After logging in, scroll through the list of posts and choose one.
+     * - Assert that the post gets displayed.
+     * - Scroll through the post contents.
+     */
     @Test
     fun testAppFlow() {
         // Proceed to test the login actions
@@ -49,8 +68,24 @@ class HostActivityTest {
         Thread.sleep(1000)
         // After that, proceed to test the list of posts.
         scrollOnList_selectAnElementTest()
+        // After selecting a post, assert it gets displayed.
+        assertPostGetsDisplayed_scrollOnContentsTest()
     }
 
+    /**
+     * Checks that the post view content gets displayed and swipes
+     * down and up the view.
+     */
+    private fun assertPostGetsDisplayed_scrollOnContentsTest() {
+        // Check that the post contents get displayed.
+        onView(withId(R.id.content))
+            .check(matches(isDisplayed()))
+        // Swipe through the vie contents.
+        onView(withId(R.id.content))
+            .perform(swipeDown())
+        onView(withId(R.id.content))
+            .perform(swipeUp())
+    }
 
     /**
      * Scrolls through the list of posts and clicks the third result.
