@@ -9,38 +9,37 @@
                                    android:layout_margin="8dp">
     <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
                                                        android:layout_height="200dp">
-        <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/productPicture"
+        <ImageView
+                android:id="@+id/picture"
                 android:layout_width="0dp"
                 app:layout_constraintBottom_toBottomOf="@id/guideline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_height="0dp"
-                app:failureImage="@mipmap/ic_launcher"
                 app:layout_constraintTop_toTopOf="parent"
-                app:placeholderImage="@mipmap/ic_launcher"/>
+                android:src="@drawable/ic_launcher_background" android:scaleType="center"/>
 
         <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                tools:text="Product Title"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/slug"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productPicture"
-                android:id="@+id/title"
-                android:textSize="24sp"
+                app:layout_constraintTop_toBottomOf="@+id/picture"
+                android:id="@+id/description"
+                android:textSize="14sp"
                 android:textColor="@color/colorMaterialPrimaryText"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="24dp"/>
+                android:layout_marginEnd="24dp" tools:text="Lorem ipsum dolor sit amet"/>
         <TextView
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:id="@+id/description"
-                app:layout_constraintTop_toBottomOf="@+id/title"
+                android:layout_height="wrap_content"
+                android:id="@+id/slug"
+                app:layout_constraintTop_toBottomOf="@+id/description"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Lorem ipsum dolor sit amet" android:layout_marginStart="16dp"
-                android:layout_marginEnd="24dp" android:textColor="@color/colorMaterialSecondaryText"/>
+                android:layout_marginEnd="14dp" android:textColor="@color/colorMaterialSecondaryText"/>
         <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content"
                                                     android:layout_height="wrap_content"
                                                     android:id="@+id/guideline"

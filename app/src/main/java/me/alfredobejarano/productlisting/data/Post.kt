@@ -29,7 +29,7 @@ data class Post(
     @SerializedName("body")
     val body: String,
     @Expose
-    @SerializedName("")
+    @SerializedName("slug")
     val slug: String,
     @Expose
     @SerializedName("title")
